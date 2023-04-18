@@ -1,124 +1,183 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+// import React, { useState } from "react";
+// // import { createPopper } from "@popperjs/core";
+// import { Dialog, Transition } from "@headlessui/react";
+// import { Fragment } from "react";
+// import MainPopup from "@/popup/MainPopup";
+// const BankForm = () => {
+//   const [isOpen, setIsOpen] = useState(false);
+//   const [nextOpen, setNextPopup] = useState(false);
+//   const handleClick = () => {
+//     <MainPopup />;
+//   };
 
-const inter = Inter({ subsets: ['latin'] })
+//   function openPopup() {
+//     setIsOpen(true);
+//   }
+//   function closePopup() {
+//     setIsOpen(false);
+//   }
 
-export default function Home() {
+//   return (
+//     <>
+//       <button onClick={openPopup}>Open Popup</button>
+//       <Transition appear show={isOpen} as={Fragment}>
+//         <Dialog
+//           as="div"
+//           className="h-screen fixed inset-0 z-10 overflow-y-auto"
+//           onClose={closePopup}
+//         >
+//           <div className="px-4 text-center ">
+//             <Transition.Child
+//               as={Fragment}
+//               enter="ease-out duration-300"
+//               enterFrom="opacity-0"
+//               enterTo="opacity-100"
+//               leave="ease-in duration-200"
+//               leaveFrom="opacity-100"
+//               leaveTo="opacity-0"
+//             >
+//               <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
+//             </Transition.Child>
+//             <span
+//               className="inline-block h-screen align-middle"
+//               aria-hidden="true"
+//             >
+//               &#8203;
+//             </span>
+//             <Transition.Child
+//               as={Fragment}
+//               enter="ease-out duration-300"
+//               enterFrom="opacity-0 scale-95"
+//               enterTo="opacity-100 scale-100"
+//               leave="ease-in duration-200"
+//               leaveFrom="opacity-100 scale-100"
+//               leaveTo="opacity-0 scale-95"
+//             >
+//               <div className="inline-block w-full max-w-5xl p-6 my-8  overflow-hidden text-left align-middle transition-all transform shadow-xl rounded-2xl border-8 min-h-screen overflow-x-scroll bg-orange-300 border-amber-900">
+//                 <div className="w-full  flex justify-end gap-5">
+//                   <button className="my-2 px-10  bg-white rounded-lg">
+//                     WG
+//                   </button>
+//                   <button className="my-2 px-10  bg-white rounded-lg">
+//                     WD
+//                   </button>
+//                 </div>
+
+//   <div className="border-5 border-black w-full flex justify-around flex-wrap items-center gap-5 bg-pink-300 border-5  p-5 mt-5 rounded-lg h-[400px]  ">
+//     <div className="border-2 p-5 bg-blue-100 hover:cursor-pointer  border-black border-r-2 rounded-md  w-1/6 h-[150px]"></div>
+
+//     <div className="border-2 p-5 bg-blue-100 hover:cursor-pointer  border-black border-r-2 rounded-md  w-1/6 h-[150px]"></div>
+//     <div className="border-2 p-5 bg-blue-100 hover:cursor-pointer  border-black border-r-2 rounded-md   w-1/6 h-[150px]"></div>
+//     <div className="border-2 p-5 bg-blue-100 hover:cursor-pointer  border-black border-r-2 rounded-md  w-1/6 h-[150px]"></div>
+//     <div className="border-2 p-5 bg-blue-100 hover:cursor-pointer  border-black border-r-2 rounded-md  w-1/6 h-[150px]"></div>
+//     <div className="border-2 p-5 bg-blue-100 hover:cursor-pointer  border-black border-r-2 rounded-md  w-1/6 h-[150px]"></div>
+//     <div className="border-2 p-5 bg-blue-100 hover:cursor-pointer  border-black border-r-2 rounded-md w-1/6 h-[150px]"></div>
+//     <div className="border-2 p-5 bg-blue-100 hover:cursor-pointer  border-black border-r-2 rounded-md w-1/6 h-[150px]"></div>
+//     <div className="border-2 p-5 bg-blue-100 hover:cursor-pointer  border-black border-r-2 rounded-md  w-1/6 h-[150px]"></div>
+//     <div className="border-2 p-5 bg-blue-100 hover:cursor-pointer  border-black border-r-2 rounded-md w-1/6 h-[150px]"></div>
+//   </div>
+// </div>
+//             </Transition.Child>
+//           </div>
+//         </Dialog>
+//       </Transition>
+//     </>
+//   );
+// };
+// export default BankForm;
+
+import React, { useState } from "react";
+import { ImCross } from "react-icons/im";
+import { Tab } from "@headlessui/react";
+import StakingCart from "@/component/StakingCart";
+import LiquidityCart from "@/component/LiquidityCart";
+
+function classNames(...classes: any) {
+  return classes.filter(Boolean).join(" ");
+}
+
+const Home = () => {
+  const gameWalletButton = (
+    <button className="block w-56 py-1 text-center text-sm border-4 border-amber-900  text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+      Liquidity Mining
+    </button>
+  );
+  const walletButton = (
+    <button className="block  w-56 text-center py-1 border-4 border-amber-900  text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+      Staking Pool
+    </button>
+  );
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">pages/index.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className=" lg:w-[90%] md:w-[100%] sm:w-[100%]  lg:m-auto  ">
+      <div className="   w-[80%] m-auto my-20      bg-orange-300  border-black border-[5px] ">
+        <div className="w-full h-[50px] p-5 flex justify-between">
+          <p className="text-white bold text-2xl">Bank</p>
+          <button className="text-white bg-red-800 items-center px-2 py-4 flex justify-center rounded-lg">
+            <ImCross />
+          </button>
+        </div>
+        <div className="flex flex-col  ">
+          <div className="w-full flex flex-col justify-center items-center px-10 ">
+            <Tab.Group>
+              <Tab.List
+                className={classNames(
+                  "w-full flex lg:flex-row md:flex-col max-sm:flex-col max-sm:gap-1 sm:flex-col justify-center  items-center lg:gap-3 md:gap-1 sm:gap-1  rounded-xl px-1 pt-3 "
+                )}
+              >
+                <Tab
+                  className={({ selected }) =>
+                    classNames(
+                      "block  w-56 text-center py-1 border-4 border-amber-900  text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900",
+                      "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
+                      selected
+                        ? "bg-white shadow outline-none"
+                        : "text-blue-100 hover:bg-white/[0.12] hover:text-white"
+                    )
+                  }
+                >
+                  Liquidity Mining
+                </Tab>
+
+                <Tab
+                  className={({ selected }) =>
+                    classNames(
+                      " block  w-56 text-center py-1 border-4 border-amber-900  text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900",
+                      "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
+                      selected
+                        ? "bg-white"
+                        : "text-blue-100 hover:bg-white/[0.12] hover:text-white"
+                    )
+                  }
+                >
+                  Staking Pool
+                </Tab>
+              </Tab.List>
+              <Tab.Panels className="my-10 px-14 w-[100%]">
+                <Tab.Panel
+                  className={classNames(
+                    "flex lg:justify-start sm:justify-center md:justify-center max-sm:justify-center flex-wrap p-3 lg:gap-5 md:gap-10 sm:gap-10 max-sm:gap-5 ",
+                    "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
+                  )}
+                >
+                  <LiquidityCart />
+                </Tab.Panel>
+                <Tab.Panel
+                  className={classNames(
+                    "flex lg:justify-start sm:justify-center md:justify-center max-sm:justify-center flex-wrap p-3 lg:gap-5 md:gap-10 sm:gap-10 max-sm:gap-5",
+                    "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
+                  )}
+                >
+                  <StakingCart />
+                  <StakingCart />
+                  <StakingCart />
+                </Tab.Panel>
+              </Tab.Panels>
+            </Tab.Group>
+          </div>
         </div>
       </div>
+    </div>
+  );
+};
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
-}
+export default Home;
